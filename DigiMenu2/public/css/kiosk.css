@@ -1,0 +1,241 @@
+/* --- Global & Typography --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+body {
+    background-color: #ffffff;
+    color: #333;
+    overflow: hidden; /* Mencegah scroll full browser */
+}
+a { text-decoration: none; }
+
+/* --- Layout Dasar --- */
+.kiosk-wrapper {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* --- Sidebar --- */
+.sidebar {
+    width: 100px;
+    background-color: #ffffff;
+    border-right: 1px solid #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 25px;
+    flex-shrink: 0;
+}
+.logo-area { margin-bottom: 50px; }
+.logo-img { width: 65px; height: auto; }
+.nav-menu { display: flex; flex-direction: column; gap: 35px; width: 100%; }
+.nav-link { display: flex; flex-direction: column; align-items: center; color: #d1d1d1; font-size: 10px; font-weight: 600; transition: color 0.2s; }
+.nav-link i { font-size: 22px; margin-bottom: 8px; }
+.nav-link.active { color: #cc8e69; }
+
+/* --- Area Utama --- */
+.main-workspace {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #fafafa; /* Memberi kontras tipis agar lebih elegan */
+}
+
+/* --- Top Bar --- */
+.top-bar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px 40px;
+    gap: 30px;
+    background-color: #ffffff;
+}
+.time-display { display: flex; align-items: center; gap: 10px; color: #555; font-size: 14px; font-weight: 500; }
+.btn-add { background-color: #b9d2d2; color: #333; border: none; padding: 12px 20px; border-radius: 6px; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; cursor: pointer; }
+
+/* --- Konten Halaman (Table List) --- */
+.content-body {
+    padding: 20px 60px 40px 60px;
+    flex: 1;
+    overflow-y: auto; /* Jika meja banyak, area ini saja yang bisa di-scroll */
+    background-color: #ffffff;
+}
+.page-title-row {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    border-bottom: 1px solid #f5f5f5;
+    padding-bottom: 15px;
+    margin-bottom: 40px;
+}
+.page-title { font-size: 20px; font-weight: 500; color: #222; }
+.floor-selector { display: flex; gap: 10px; }
+.floor-btn { padding: 8px 20px; border: none; border-radius: 4px; font-size: 12px; font-weight: 600; cursor: pointer; }
+.floor-btn.active { background-color: #e4ccb5; color: #333; }
+.floor-btn:not(.active) { background-color: #f9f9f9; color: #d1d1d1; }
+
+/* --- Grid Meja & Bentuk Visual --- */
+.table-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px 40px; /* Jarak antar meja */
+    max-width: 850px;
+}
+.table-item { display: flex; justify-content: center; align-items: center; cursor: pointer; }
+.table-shape { position: relative; width: 130px; height: 130px; }
+
+/* Kursi */
+.chair { position: absolute; width: 32px; height: 22px; border: 2px solid #ccc; background-color: #fff; border-radius: 3px; transition: border-color 0.2s; }
+.top-left { top: 12px; left: 12px; transform: rotate(-45deg); }
+.top-right { top: 12px; right: 12px; transform: rotate(45deg); }
+.bottom-left { bottom: 12px; left: 12px; transform: rotate(45deg); }
+.bottom-right { bottom: 12px; right: 12px; transform: rotate(-45deg); }
+
+/* Meja Tengah */
+.table-center {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 75px; height: 75px; border: 2px solid #ccc; border-radius: 50%;
+    background-color: #fff; display: flex; justify-content: center; align-items: center;
+    z-index: 2; transition: border-color 0.2s;
+}
+.table-center span { color: #cc8e69; font-size: 18px; font-weight: 500; }
+
+/* --- State: Meja Tersedia & Dipilih --- */
+.table-item:hover:not(.occupied) .table-center,
+.table-item:hover:not(.occupied) .chair { border-color: #e4ccb5; }
+
+.table-item.selected .table-center,
+.table-item.selected .chair { border-color: #cc8e69; border-width: 2.5px; }
+
+/* --- State: Meja Sedang Dipakai (Occupied) --- */
+.table-item.occupied { opacity: 0.5; cursor: not-allowed; }
+.table-item.occupied .table-center,
+.table-item.occupied .chair { border-color: #e74c3c; background-color: #fdf3f2; }
+.table-item.occupied .table-center span { color: #e74c3c; }
+
+/* --- Footer Action --- */
+.action-footer {
+    padding: 25px 60px;
+    background-color: #ffffff;
+    border-top: 1px solid #f5f5f5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+.selection-status { display: flex; gap: 30px; color: #444; font-size: 13px; font-weight: 500; }
+.status-box i { color: #777; margin-right: 8px; font-size: 14px; }
+.highlight-text { color: #cc8e69; font-size: 16px; font-weight: 700; margin-left: 4px; }
+.btn-proceed {
+    background-color: #556b2f; color: #fff; border: none; padding: 15px 30px;
+    border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer;
+}
+
+/* --- Guest Counter Style --- */
+.guest-counter {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: 10px;
+    background: #f0f4f4;
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+.btn-qty {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+    color: #333;
+}
+
+.btn-qty:hover {
+    background: #e4ccb5;
+    border-color: #cc8e69;
+}
+
+.btn-qty:active {
+    transform: scale(0.9);
+}
+
+.highlight-text {
+    min-width: 20px;
+    text-align: center;
+    display: inline-block;
+}
+
+/* --- Welcome Modal (Dine In / Takeaway) --- */
+.welcome-modal {
+    display: flex; /* Ditampilkan secara default saat web dibuka */
+    position: fixed;
+    z-index: 9999;
+    left: 0; top: 0;
+    width: 100vw; height: 100vh;
+    background-color: rgba(255, 255, 255, 0.90); 
+    backdrop-filter: blur(8px); /* Efek blur kekinian */
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome-modal.hidden {
+    display: none; /* Class untuk menyembunyikan modal setelah dipilih */
+}
+
+.welcome-content {
+    text-align: center;
+    background: #fff;
+    padding: 50px 60px;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.welcome-logo { width: 100px; margin-bottom: 20px; }
+.welcome-content h2 { font-size: 28px; font-weight: 800; color: #333; margin-bottom: 10px; }
+.welcome-content p { font-size: 16px; color: #666; margin-bottom: 40px; font-weight: 500; }
+
+.order-options { display: flex; gap: 30px; justify-content: center; }
+
+.btn-option {
+    width: 180px; height: 180px;
+    border: 2px solid #eee;
+    background: #fafafa;
+    border-radius: 20px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 15px; cursor: pointer; transition: all 0.3s ease;
+}
+
+.btn-option i { font-size: 55px; color: #cc8e69; transition: 0.3s; }
+.btn-option span { font-size: 18px; font-weight: 800; color: #333; }
+
+.btn-option:hover {
+    border-color: #cc8e69;
+    background: #fff;
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(204, 142, 105, 0.2);
+}
+
+/* Tombol khusus Takeaway warnanya dibedakan */
+.btn-option.takeaway i { color: #556b2f; }
+.btn-option.takeaway:hover {
+    border-color: #556b2f;
+    box-shadow: 0 15px 30px rgba(85, 107, 47, 0.2);
+}

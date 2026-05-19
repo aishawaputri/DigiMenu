@@ -1,0 +1,56 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+body { background: #ffffff; color: #333; overflow: hidden; }
+a { text-decoration: none; }
+.text-orange { color: #cc8e69; }
+
+.kiosk-wrapper { display: flex; height: 100vh; width: 100vw; background: #f8f9fa; }
+
+/* Sidebar (Mengikuti desain sebelumnya) */
+.sidebar { width: 100px; flex-shrink: 0; background: #fff; border-right: 1px solid #eee; display: flex; flex-direction: column; align-items: center; padding-top: 25px; z-index: 10; }
+.logo-img { width: 65px; margin-bottom: 50px; }
+.nav-menu { display: flex; flex-direction: column; gap: 35px; width: 100%; }
+.nav-link { display: flex; flex-direction: column; align-items: center; color: #d1d1d1; font-size: 10px; font-weight: 600; }
+.nav-link i { font-size: 22px; margin-bottom: 8px; }
+.nav-link.active { color: #cc8e69; }
+
+/* Main Workspace & Top Bar */
+.main-workspace { flex: 1; display: flex; flex-direction: column; }
+.top-bar { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: #fff; border-bottom: 1px solid #eee; }
+.search-box-dummy { background: #f0f4f4; padding: 12px 20px; border-radius: 8px; display: flex; align-items: center; width: 300px; color: #888; }
+.search-box-dummy input { border: none; background: transparent; outline: none; margin-left: 10px; flex: 1; }
+.top-actions { display: flex; align-items: center; gap: 30px; }
+.datetime-display { font-size: 14px; font-weight: 600; color: #666; }
+.btn-add-table { background: #b9d2d2; border: none; padding: 12px 20px; border-radius: 6px; font-weight: 600; cursor: pointer; }
+
+/* Payment Content */
+.payment-content { padding: 40px; display: flex; flex-direction: column; flex: 1; overflow-y: auto; background: #fff; }
+.order-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+.order-header-row h2 { font-size: 24px; font-weight: 600; color: #444; }
+.order-meta { display: flex; gap: 30px; font-size: 14px; font-weight: 600; color: #555; }
+
+/* Table List */
+.order-table { flex: 1; margin-bottom: 30px; }
+.table-header { display: flex; background: #f1f6f6; padding: 15px 20px; border-radius: 8px; font-size: 12px; font-weight: 700; color: #555; margin-bottom: 10px; }
+.table-body { display: flex; flex-direction: column; gap: 10px; }
+.table-row { display: flex; padding: 15px 20px; border-bottom: 1px solid #eee; align-items: center; font-size: 13px; font-weight: 600; }
+.col-item { flex: 2; display: flex; flex-direction: column; gap: 4px; }
+.item-category { font-size: 10px; color: #888; font-weight: 500; }
+.col-price { flex: 1; text-align: center; }
+.col-qty { flex: 1; text-align: center; }
+.col-subtotal { flex: 1; text-align: right; display: flex; justify-content: flex-end; align-items: center; gap: 15px; }
+
+.btn-delete-row { color: #e74c3c; background: none; border: none; cursor: pointer; font-size: 16px; }
+
+/* Bottom Action Area */
+.payment-action-area { border-top: 1px dashed #ccc; padding-top: 30px; }
+.total-bar-large { background: #f59e3f; color: #fff; padding: 20px 30px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+.total-bar-large span { font-size: 20px; font-weight: 700; }
+.total-bar-large strong { font-size: 32px; font-weight: 800; }
+
+.payment-methods { display: flex; justify-content: center; gap: 40px; margin-bottom: 30px; }
+.btn-method { background: #eee; border: 2px solid #ddd; padding: 25px 60px; border-radius: 10px; font-size: 20px; font-weight: 700; color: #333; cursor: pointer; display: flex; align-items: center; gap: 15px; transition: 0.2s; width: 250px; justify-content: center; }
+.btn-method i { color: #2ecc71; font-size: 24px; }
+.btn-method.selected { background: #e8f5e9; border-color: #2ecc71; box-shadow: 0 4px 15px rgba(46, 204, 113, 0.2); }
+
+.btn-process-checkout { width: 100%; background: #ffb6b9; color: #fff; border: none; padding: 25px; border-radius: 8px; font-size: 24px; font-weight: 800; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 15px; transition: 0.2s; }
+.btn-process-checkout:active { transform: scale(0.98); }
